@@ -3,8 +3,8 @@ package ch.vonarburg.banksim;
 public class Konto
 {
 	private static int anzKonten;
-	
-	private String ktoInhaber;
+
+	public String ktoInhaber;
 	private double ktoStand;
 	private String ktoTyp;
 	private int    ktoNummer;
@@ -30,22 +30,24 @@ public class Konto
 
 	public void zahleEin(double betrag){
 		this.ktoStand += betrag;
-		System.out.println("KontoStand nach Einzahlung: " + ktoStand);
+		//System.out.println("KontoStand nach Einzahlung: " + ktoStand);
 	}
 	public void zahleAus(double betrag){
 		this.ktoStand -= betrag;
-		System.out.println("KontoStand nach Auszahlung: " + ktoStand);
+		//System.out.println("KontoStand nach Auszahlung: " + ktoStand);
 	}
 	public void gibktoStandAus(){
-		String output = "";
+		String output = "Ausgabe Kontostand ";
 		if (this.ktoNummer != 0){
-			output += "Konto Nummer: " + this.ktoNummer + "\n";
+			output += "Konto Nummer:  " + this.ktoNummer + "\n";
+		}
+		if (this.ktoInhaber != null && this.ktoInhaber != ""){
+			output += "Konto Inhaber: " + this.ktoInhaber + "\n";
 		}
 		if (this.ktoTyp != null && this.ktoTyp != ""){
-			output += "Konto Typ:    " + this.ktoTyp + "\n";
+			output += "Konto Typ:     " + this.ktoTyp + "\n";
 		}
-		output +=     "Saldo:        " + this.ktoStand + " CHF!\n";
+		output +=     "Saldo:         " + this.ktoStand + " CHF!\n";
 		System.out.println(output);
 	}
-	
 }
