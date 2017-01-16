@@ -1,13 +1,12 @@
 package ch.vonarburg.banksim;
 
-public class Konto
-{
+public class Konto{
 	private static int anzKonten;
 
-	public String ktoInhaber;
+	private final String ktoInhaber;
 	private double ktoStand;
 	private String ktoTyp;
-	private int    ktoNummer;
+	private final int ktoNummer;
 
 	public Konto(String inhaber){
 		this.ktoInhaber = inhaber;
@@ -33,21 +32,28 @@ public class Konto
 		//System.out.println("KontoStand nach Einzahlung: " + ktoStand);
 	}
 	public void zahleAus(double betrag){
-		this.ktoStand -= betrag;
-		//System.out.println("KontoStand nach Auszahlung: " + ktoStand);
+		if (ktoStand >= betrag){
+			ktoStand -= betrag;
+		} else {
+			System.out.println("Kontosaldo zu tief! Maximale Auszahlung: " + ktoStand);
+		}
 	}
-	public void gibktoStandAus(){
-		String output = "Ausgabe Kontostand ";
+	public void gibKtoStandAus(){
+		String output = "Ausgabe Kontostand... ";
 		if (this.ktoNummer != 0){
-			output += "Konto Nummer:  " + this.ktoNummer + "\n";
+			output += "Konto Nummer:  " + this.ktoNummer 	+ "\n";
 		}
-		if (this.ktoInhaber != null && this.ktoInhaber != ""){
-			output += "Konto Inhaber: " + this.ktoInhaber + "\n";
+		if (this.ktoInhaber != null && !this.ktoInhaber.equals("")){
+			output += "Konto Inhaber: " + this.ktoInhaber 	+ "\n";
 		}
-		if (this.ktoTyp != null && this.ktoTyp != ""){
-			output += "Konto Typ:     " + this.ktoTyp + "\n";
+		if (this.ktoTyp != null && !this.ktoTyp.equals("")){
+			output += "Konto Typ:     " + this.ktoTyp 		+ "\n";
 		}
 		output +=     "Saldo:         " + this.ktoStand + " CHF!\n";
 		System.out.println(output);
+	}
+
+	public static void gibAnzahlKontosAus(){
+		System.out.println("Total erzeugte Konti:" + anzKonten);
 	}
 }
